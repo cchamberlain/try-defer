@@ -32,7 +32,8 @@ if(typeof window === 'object') {
   }
 
   function reactReplay(React) {
-    return props => <script dangerouslySetInnerHTML={{ __html: serialize() }} />
+    const serialized = serialize()
+    return props => <script dangerouslySetInnerHTML={{ __html: serialized }} />
   }
 
   const defer = { replay, serialize, reactReplay }
