@@ -72,7 +72,8 @@ if(typeof window === &apos;object&apos;) {
   }
 
   function reactReplay(React) {
-    return props =&gt; &lt;script dangerouslySetInnerHTML={{ __html: serialize() }} /&gt;
+    const serialized = serialize()
+    return props =&gt; &lt;script dangerouslySetInnerHTML={{ __html: serialized }} /&gt;
   }
 
   const defer = { replay, serialize, reactReplay }
