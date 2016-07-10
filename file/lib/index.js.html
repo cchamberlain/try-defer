@@ -38,22 +38,13 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">lib/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * Creates a global object that allows replaying of failed logic at a deferred time.
- * @param  {Function} fn     The function that may fail
- * @return {Function}        A replica of the function that will internally catch errors and allow them to be executed sequentially at a deferred time.
- */
-export default function tryDefer (condition = () =&gt; true) {
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export default function tryDefer (condition = () =&gt; true) {
   let _queue: []
-  let enqueue = (fn, args, errors) =&gt; _queue.push({ fn, args, errors })
+  let enqueue = (fn, args, errors, attempt) =&gt; _queue.push({ fn, args, errors, attempt })
 
-  function _flush () {
+  function replay () {
     const queue = _queue
     _queue = []
-    return queue
-  }
-
-  function replay (queue = _flush()) {
     while(queue.length &gt; 0) {
       attempt(queue.shift())
     }
@@ -72,11 +63,11 @@ export default function tryDefer (condition = () =&gt; true) {
   }
 
   function serialize() {
-    const serialized = require(&apos;serialize-javascript&apos;)({ execute: () =&gt; replay(_queue) })
+    const serialized = require(&apos;serialize-javascript&apos;)({ replay })
     return `
 if(typeof window === &apos;object&apos;) {
-  window.__replay__ = ${serialized};
-  window.__replay__.execute();
+  var defer = JSON.parse(${serialized});
+  defer.replay();
 }`
   }
 

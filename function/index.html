@@ -53,14 +53,13 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-tryDefer">tryDefer</a></span></span><span data-ice="signature">(fn: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-tryDefer">tryDefer</a></span></span><span data-ice="signature">(condition: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Creates a global object that allows replaying of failed logic at a deferred time.</p>
-</div>
+        
       </div>
     </td>
     <td>
@@ -80,19 +79,18 @@
     
     
     
-    <span data-ice="name">tryDefer</span><span data-ice="signature">(fn: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></span>
+    <span data-ice="name">tryDefer</span><span data-ice="signature">(condition: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/index.js.html#lineNumber6">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/index.js.html#lineNumber1">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import tryDefer from &apos;<span><a href="file/lib/index.js.html#lineNumber6">try-defer</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import tryDefer from &apos;<span><a href="file/lib/index.js.html#lineNumber1">try-defer</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>Creates a global object that allows replaying of failed logic at a deferred time.</p>
-</div>
+  
 
   
 
@@ -105,11 +103,10 @@
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">fn</td>
-      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>The function that may fail</p>
-</td>
+      <td data-ice="name" data-depth="0">condition</td>
+      <td data-ice="type"><span>*</span></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"></td>
     </tr>
 </tbody>
   </table>
@@ -120,9 +117,8 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>A replica of the function that will internally catch errors and allow them to be executed sequentially at a deferred time.</p>
-</td>
+        <td class="return-type" data-ice="returnType"><span>*</span></td>
+        
       </tr>
     </table>
     <div data-ice="returnProperties">
