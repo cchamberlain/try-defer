@@ -1,8 +1,3 @@
-/**
- * Creates a global object that allows replaying of failed logic at a deferred time.
- * @param  {Function} fn     The function that may fail
- * @return {Function}        A replica of the function that will internally catch errors and allow them to be executed sequentially at a deferred time.
- */
 export default function tryDefer (condition = () => true) {
   let _queue: []
   let enqueue = (fn, args, errors) => _queue.push({ fn, args, errors })
