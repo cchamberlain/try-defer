@@ -1,14 +1,10 @@
 export default function tryDefer (condition = () => true) {
   let _queue: []
-  let enqueue = (fn, args, errors) => _queue.push({ fn, args, errors })
+  let enqueue = (fn, args, errors, attempt) => _queue.push({ fn, args, errors, attempt })
 
-  function _flush () {
+  function replay () {
     const queue = _queue
     _queue = []
-    return queue
-  }
-
-  function replay (queue = _flush()) {
     while(queue.length > 0) {
       attempt(queue.shift())
     }
@@ -27,11 +23,11 @@ export default function tryDefer (condition = () => true) {
   }
 
   function serialize() {
-    const serialized = require('serialize-javascript')({ execute: () => replay(_queue) })
+    const serialized = require('serialize-javascript')({ replay })
     return `
 if(typeof window === 'object') {
-  window.__replay__ = ${serialized};
-  window.__replay__.execute();
+  var defer = JSON.parse(${serialized});
+  defer.replay();
 }`
   }
 
